@@ -177,7 +177,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -278,6 +278,458 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/reflect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩哥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/05/reflect/" itemprop="url">反射</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T19:11:17+08:00">
+                2020-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="java反射"><a href="#java反射" class="headerlink" title="java反射"></a>java反射</h2><p>1.什么是反射？<br>反射是一种机制,利用反射机制动态的实例化对象、读写属性、调用方法、构造函数。</p>
+<p>2.如何得到类对象<br>   一切反射相关的代码都从获得类对象开始<br>   3种获取方式：<br>     2.1 类名.class;<br>     2.2 对象名.getClass();<br>     2.3 Class.forName(全限定名/全路径名)</p>
+<p>3.根据类得到类名（全限定名/全路径名）<br>    1）cName.getName();            –&gt;获取全限定名<br>    2）cName.getSimpleName();         –&gt;获取类名<br>    3）cName.getPackage();             –&gt;获取包名</p>
+<p>4.根据类得到类的属性<br>    Field field=cla.getField(“属性名”);</p>
+<pre><code>field.getName();            --&gt;获取属性名            
+filed.getType();            --&gt;获取属性类型        
+field.getModifiers();            --&gt;获取属性访问修饰符    
+field.set(Object,Object);         --&gt;设置属性值，参数1：要设置属性所在对象；参数2：要设置的值;    
+field.get(Object);            --&gt;获取属性值，参数：要获取属性值的对象                
+field.getDeclaredField(“属性名”);    --&gt;获取单个属性（私有、公有、受保护、默认、静态）    
+field.getDeclaredFields();        --&gt;获取所有属性（私有、公有、受保护、默认、静态）</code></pre><p>5.根据类得到类的方法</p>
+<pre><code>无参无返回、无参有参会、有参无返回、有参有返回
+cla.getMethod();            --&gt;获取单个公有方法
+cla.getDeclaredMethod();        --&gt;获取当个方法(包括私有、受保护、默认、公有)
+cla.getMethods();            --&gt;获取所有公有方法
+cla.getDeclaredMethods();        --&gt;获取所有的方法(包括私有、受保护、默认、公有)</code></pre><p>6.根据类得到类的构造方法</p>
+<pre><code>cla.getConstrutor();            --&gt;获取单个公有构造方法
+cla.getDeclaredConstrutor();        --&gt;获取单个构造方法(包括私有、受保护、默认、公有)
+cla.getConstrutors();            --&gt;获取所有的公有构造方法
+cla.getDeclaredConstrutors();        --&gt;获取所有的构造方法(包括私有、受保护、默认、公有)</code></pre><p>7.根据类得到类的实现接口列表</p>
+<pre><code>Class[] interface=cla.getInterfaces();    --&gt;获取类对象中所有实现接口列表</code></pre><p>##反射使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Class cla=Class.forName(<span class="string">"com.zking.fanse.entity.Person"</span>);</span><br><span class="line">		Person per=(Person)cla.newInstance();</span><br><span class="line">		//获取所有属性</span><br><span class="line">		Field[] Fields = cla.getDeclaredFields();</span><br><span class="line">			<span class="keyword">for</span> (Field field : Fields) &#123;</span><br><span class="line">				System.out.println(<span class="string">"属性的名"</span>+field.getName());</span><br><span class="line">				System.out.println(<span class="string">"属性的类型"</span>+field.getType());</span><br><span class="line">				System.out.println(<span class="string">"属性的修饰符"</span>+field.getModifiers());</span><br><span class="line">				System.out.println(<span class="string">"-------------------------"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			//获取所有方法</span><br><span class="line">		Method[] methods=cla.getDeclaredMethods();</span><br><span class="line">		<span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line">			System.out.println(<span class="string">"方法的名"</span>+method.getName());</span><br><span class="line">			System.out.println(<span class="string">"方法的类型"</span>+method.getReturnType());</span><br><span class="line">			System.out.println(<span class="string">"方法的修饰符"</span>+method.getModifiers());</span><br><span class="line">			System.out.println(<span class="string">"-----------------------"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		//私有属性赋值</span><br><span class="line">		field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">		field.set(stu,<span class="string">"qf"</span>);</span><br><span class="line">		</span><br><span class="line">		Field field = cla.getField(<span class="string">"age"</span>);//获取单个公有的属性</span><br><span class="line">		Method method=cla.getMethod(<span class="string">"setSid"</span>,String.class);//获取单个共有的方法</span><br><span class="line">		Field field = cla.getDeclaredField(<span class="string">"sname"</span>);//获取单个私有属性</span><br><span class="line">		Method method=cla.getDeclaredMethod(<span class="string">"add"</span>,Integer.class,Integer.class);//获取单个私有方法</span><br><span class="line">		method.setAccessible(<span class="literal">true</span>);//设置执行权限</span><br><span class="line">		//执行方法</span><br><span class="line">		Object val=method.invoke(stu,10,5);//执行方法</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/sort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩哥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/05/sort/" itemprop="url">集合之排序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T18:19:32+08:00">
+                2020-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="集合篇之排序"><a href="#集合篇之排序" class="headerlink" title="集合篇之排序"></a>集合篇之排序</h2><h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; list&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">	list.add(new Student(3,&quot;wang1&quot;,&quot;nan&quot;));</span><br><span class="line">	list.add(new Student(5,&quot;wang1&quot;,&quot;nan&quot;));</span><br><span class="line"></span><br><span class="line">	list.add(new Student(2,&quot;wang1&quot;,&quot;nan&quot;));</span><br><span class="line">	list.add(new Student(6,&quot;wang1&quot;,&quot;nan&quot;));</span><br><span class="line">	&#x2F;&#x2F;使用Collections java工具类</span><br><span class="line">	Collections.sort(list,new Comparator&lt;Student&gt;()&#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public int compare(Student o1, Student o2) &#123;</span><br><span class="line">			&#x2F;&#x2F; TODO Auto-generated method stub</span><br><span class="line">			return o1.getId()-o2.getId();</span><br><span class="line">		&#125;&#125;);</span><br><span class="line">	</span><br><span class="line">	for(Student ds:list) &#123;</span><br><span class="line">		System.out.println(ds);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">方法1.</span><br><span class="line">	Student实体类实现Comparable</span><br><span class="line">	重写;</span><br><span class="line">	public int compareTo(Object o) &#123;</span><br><span class="line">				Student sd&#x3D;(Student) o;</span><br><span class="line">				return this.getId()-sd.getId();&#x2F;&#x2F;按id大小</span><br><span class="line">				&#x2F;&#x2F;如果·return -（this.getId()-sd.getId()）;排序结果与前面相反</span><br><span class="line">				return this.getName.hashCode()-sd.getName.hashCode();&#x2F;&#x2F;按名字排序</span><br><span class="line">			&#125;</span><br><span class="line">	Set&lt;Student&gt; fa&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">	TreeSet:默认按某种规则排序</span><br><span class="line">方法2.同上面List排序</span><br><span class="line">	写工具类实现Comparator</span><br><span class="line">	public class Namecomparator implements Comparator&lt;Student&gt; &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public int compare(Student o1, Student o2) &#123;</span><br><span class="line">		&#x2F;&#x2F;按名字排序</span><br><span class="line">		return -(o1.getName().hashCode()-o2.getName().hashCode());</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;会按照名字排序a-z</span><br><span class="line">	Set&lt;Student&gt; fa1&#x3D;new TreeSet&lt;&gt;(new Namecomparator());</span><br><span class="line">		fa1.add(new Student(1,&quot;a1&quot;,&quot;boy&quot;));</span><br><span class="line">		fa1.add(new Student(3,&quot;c1&quot;,&quot;boy&quot;));</span><br><span class="line">		fa1.add(new Student(2,&quot;b1&quot;,&quot;girl&quot;));</span><br><span class="line">		for (Student student : fa1) &#123;</span><br><span class="line">			System.out.println(student);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(&quot;--------Key排序------------&quot;);</span><br><span class="line">		Map&lt;String, String&gt; fd3&#x3D;new TreeMap&lt;&gt;();&#x2F;&#x2F;TreeMap（）可以使用实现了Comparator的工具类</span><br><span class="line">		fd3.put(&quot;1&quot;,&quot;1&quot;);</span><br><span class="line">		fd3.put(&quot;6&quot;,&quot;3&quot;);</span><br><span class="line">		fd3.put(&quot;3&quot;,&quot;2&quot;);</span><br><span class="line">		fd3.put(&quot;4&quot;,&quot;4&quot;);</span><br><span class="line">		Set&lt;Entry&lt;String, String&gt;&gt; fg&#x3D;fd3.entrySet();</span><br><span class="line">		for (Entry&lt;String, String&gt; entry : fg) &#123;</span><br><span class="line">			String ss&#x3D;entry.getValue();</span><br><span class="line">			String ff&#x3D;entry.getKey();</span><br><span class="line">			System.out.println(ff+&quot;-&quot;+ss);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;--------value排序------------&quot;);</span><br><span class="line">		List&lt;Entry&lt;String, String&gt;&gt; fds&#x3D;new ArrayList&lt;Entry&lt;String, String&gt;&gt;(fd3.entrySet());</span><br><span class="line">		Collections.sort(fds,new Comparator&lt;Map.Entry&lt;String,String&gt;&gt;() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public int compare(Entry&lt;String, String&gt; o1, Entry&lt;String, String&gt; o2) &#123;</span><br><span class="line">				</span><br><span class="line">				return o1.getValue().hashCode()-o2.getValue().hashCode();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		</span><br><span class="line">		for (Entry&lt;String, String&gt; entry : fds) &#123;</span><br><span class="line">			String ss&#x3D;entry.getValue();</span><br><span class="line">			String ff&#x3D;entry.getKey();</span><br><span class="line">			System.out.println(ff+&quot;-&quot;+ss);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/one/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩哥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/05/one/" itemprop="url">集合之基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T15:04:29+08:00">
+                2020-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="集合篇一之基础篇"><a href="#集合篇一之基础篇" class="headerlink" title="集合篇一之基础篇"></a>集合篇一之基础篇</h2><p><img src="/images/jihe.gif" alt="Image text"><br>    Collection是List和Set和Queue队列的顶级接口</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1.特性</span><br><span class="line">	有下标，有序</span><br><span class="line">	数据可以重复</span><br><span class="line">2.实现类</span><br><span class="line">	ArrayList：底层结构是object数组，初始长度是10，查询快，增删改慢。线程不安全，效率高；扩容原容量的 0.5倍+1</span><br><span class="line">	Vector：底层结构是object数组，初始长度是10，线程安全，效率低。加载因子为1：当元素个数超过容量长度时，进行扩容，原容量的一倍</span><br><span class="line">	         Stack 是Vector类的实现类</span><br><span class="line">	LinkedList：底层结构是列表：Node&lt;E&gt;，线程不安全，效率高，查询慢，增删改快</span><br><span class="line">3.遍历</span><br><span class="line">	System.out.println(&quot;------for循环---------&quot;);</span><br><span class="line">	for(int i&#x3D;0;i&lt;lit.size();i++) &#123;</span><br><span class="line">		System.out.println(lit.get(i));</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(&quot;------foreach---------&quot;);</span><br><span class="line">	&#x2F;&#x2F;foreach</span><br><span class="line">	for (Object object : lit) &#123;</span><br><span class="line">		System.out.println(object);</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(&quot;------iterator---------&quot;);</span><br><span class="line">	Iterator ds&#x3D;lit.iterator();</span><br><span class="line">	while(ds.hasNext()) &#123;</span><br><span class="line">		System.out.println(ds.next());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.特性</span><br><span class="line">	无序，数据唯一，重复会被过滤</span><br><span class="line">2.实现类</span><br><span class="line">     HashSet：底层结构是HashMap，值存在key，线程不安全，效率高。加载因子为0.75：即当 元素个数 超过 容量长度的0.75倍 时，进行扩容</span><br><span class="line">                 原容量的 1 倍：如 HashSet的容量为16，一次扩容后是容量为32</span><br><span class="line">	 TreeSet：底层是二叉树，不能有null值，底层TreeMap</span><br><span class="line">	 LinkedHashSet：链表维护元素的插入次序</span><br></pre></td></tr></table></figure>
+<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1.特性</span><br><span class="line">	键值对，key键唯一，重复会覆盖</span><br><span class="line">2.实现类</span><br><span class="line">    HashMap：底层是数组加列表;Node&lt;K,V&gt;[]，key和value可以存null值，默认长度是16，加载因子为0.75：即当 元素个数 超过 容量长度的0.75倍 时，进行扩容</span><br><span class="line">                扩容原容量的 1 倍，且调用rehash()，线程不安全，效率高。</span><br><span class="line">				java1，7之前是头插法，之后尾插法，列表长度大于八时使用红黑树，校友八使用列表</span><br><span class="line">	&#x2F;&#x2F;遍历所以值</span><br><span class="line">	Map&lt;String, String&gt; fd2&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">	Collection&lt;String&gt; dsyt&#x3D;fd2.values();</span><br><span class="line">	for (String string : dsyt) &#123;</span><br><span class="line">		System.out.println(string);</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;遍历所以键</span><br><span class="line">	Set&lt;String&gt; zh&#x3D;fd2.keySet();</span><br><span class="line">	for (String string : zh) &#123;</span><br><span class="line">		System.out.println(string);</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;遍历所以键值对</span><br><span class="line">	Set&lt;Entry&lt;String, String&gt;&gt; fa&#x3D;fd2.entrySet();</span><br><span class="line">	或</span><br><span class="line">	List&lt;Map.Entry&lt;String, String&gt;&gt; cs&#x3D;new ArrayList&lt;&gt;(fd2.entrySet());</span><br><span class="line">	for (Entry&lt;String, String&gt; entry : cs) &#123;</span><br><span class="line">		String fl&#x3D;entry.getKey();</span><br><span class="line">		String fk&#x3D;entry.getValue();</span><br><span class="line">		System.out.println(fl+&quot;-&quot;+fk);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	HashTable：线程安全，key和value不可以存null值，底层结构数组加列表：Entry&lt;?,?&gt;[] </span><br><span class="line">	TreeMap：底层列表：Entry&lt;K,V&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="并发容器："><a href="#并发容器：" class="headerlink" title="并发容器："></a>并发容器：</h1><p> HashTable在方法上使用synchronized，而ConcurrentHashMap是锁一个Entry节点，消耗小所以好一点<br> ConcurrentHashMap是HashMap升级版，提供线程安全并且效率高<br> CopyOnWriteArrayList是ArrayList升级版，提供线程安全并且效率高<br>CopyOnWriteArraySet是HashSet升级版，提供线程安全并且效率高<br> 当并发读远多于修改的场景下需要使用List和Set时，可以考虑使用CopyOnWriteArrayList和CopyOnWriteArraySet；<br> 当需要并发使用&lt;Key, Value&gt;键值对存取数据时，可以使用ConcurrentHashMap；当要保证并发&lt;Key, Value&gt;键值对有序时可以使用ConcurrentSkipListMap。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/wang/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -297,7 +749,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/04/wang/" itemprop="url">第一篇后端</a></h1>
+                <a class="post-title-link" href="/2020/04/04/wang/" itemprop="url">解析xml，properties文件</a></h1>
         
 
         <div class="post-meta">
@@ -371,8 +823,8 @@
       
         
           
-            <p>#第一篇<br>##首先</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">没啥HIO</span><br></pre></td></tr></table></figure>
+            <h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><h2 id="解析xml文件"><a href="#解析xml文件" class="headerlink" title="解析xml文件"></a>解析xml文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">xml文件内容：</span><br><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;students&gt;</span><br><span class="line">	&lt;student pid=<span class="string">"p01"</span>&gt;</span><br><span class="line">		&lt;name&gt;张三&lt;/name&gt;</span><br><span class="line">	&lt;/student&gt;</span><br><span class="line">	&lt;student pid=<span class="string">"p02"</span>&gt;</span><br><span class="line">		&lt;name&gt;李四&lt;/name&gt;</span><br><span class="line">	&lt;/student&gt;	</span><br><span class="line">	&lt;student pid=<span class="string">"p03"</span>&gt;</span><br><span class="line">		&lt;name&gt;王五&lt;/name&gt;</span><br><span class="line">	&lt;/student&gt;		</span><br><span class="line">&lt;/students&gt;</span><br><span class="line">解析：</span><br><span class="line">//解析xml文件</span><br><span class="line">	方式1.</span><br><span class="line">		//找到文件</span><br><span class="line">		InputStream is = Demo.class.getResourceAsStream(<span class="string">"Student.xml"</span>);</span><br><span class="line">		SAXReader saxReader=new SAXReader();</span><br><span class="line">		try &#123;</span><br><span class="line">			//放入saxReader并接受</span><br><span class="line">			Document doc=saxReader.read(is);</span><br><span class="line">			//找到对应的元素集合</span><br><span class="line">			List&lt;Node&gt; selectNodes=doc.selectNodes(<span class="string">"/students/student"</span>);</span><br><span class="line">			<span class="keyword">for</span>(Node node:selectNodes) &#123;</span><br><span class="line">				Element elem=(Element)node;</span><br><span class="line">				//找到属性</span><br><span class="line">				String pid=elem.attributeValue(<span class="string">"pid"</span>);</span><br><span class="line">				System.out.println(<span class="string">"pid="</span>+pid);</span><br><span class="line">				</span><br><span class="line">				Element name=(Element)elem.selectSingleNode(<span class="string">"name"</span>);</span><br><span class="line">				String nametext=name.getText();</span><br><span class="line">				System.out.println(<span class="string">"name="</span>+nametext);</span><br><span class="line">			&#125;</span><br><span class="line">	方式2.</span><br><span class="line">		解析xml文件找到student标签pid=p03的name</span><br><span class="line">			Element sfs1=(Element)doc.selectSingleNode(<span class="string">"/students/student[@pid='p03']/name"</span>);</span><br><span class="line">			System.out.println(sfs1.getText());</span><br></pre></td></tr></table></figure>
+<h2 id="解析properties"><a href="#解析properties" class="headerlink" title="解析properties"></a>解析properties</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;找到properties文件</span><br><span class="line">InputStream is &#x3D; Demo.class.getResourceAsStream(&quot;config.properties&quot;);</span><br><span class="line">		Properties pro &#x3D; new Properties();</span><br><span class="line">		try &#123;</span><br><span class="line">			pro.load(is);</span><br><span class="line">			String name&#x3D;pro.getProperty(&quot;name&quot;);</span><br><span class="line">			String age&#x3D;pro.getProperty(&quot;age&quot;);</span><br><span class="line">			System.out.println(&quot;name&#x3D;&quot;+name+&quot;,age&#x3D;&quot;+age);</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			&#x2F;&#x2F; TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -588,7 +1040,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -610,7 +1062,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

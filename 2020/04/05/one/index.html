@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="分享,解析," />
+  <meta name="keywords" content="分享,集合," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="解析解析xml文件1234567891011121314151617181920212223242526272829303132333435363738xml文件内容：&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;students&gt;	&lt;student pid&#x3D;&quot;p01&quot;&gt;		&lt;name&gt;张三&lt;&#x2F;name&gt;">
+<meta name="description" content="集合篇一之基础篇    Collection是List和Set和Queue队列的顶级接口 List12345678910111213141516171819202122231.特性	有下标，有序	数据可以重复2.实现类	ArrayList：底层结构是object数组，初始长度是10，查询快，增删改慢。线程不安全，效率高；扩容原容量的 0.5倍+1	Vector：底层结构是object数组，初始长度">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解析xml，properties文件">
-<meta property="og:url" content="http://yoursite.com/2020/04/04/wang/index.html">
+<meta property="og:title" content="集合之基础">
+<meta property="og:url" content="http://yoursite.com/2020/04/05/one/index.html">
 <meta property="og:site_name" content="WH">
-<meta property="og:description" content="解析解析xml文件1234567891011121314151617181920212223242526272829303132333435363738xml文件内容：&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;students&gt;	&lt;student pid&#x3D;&quot;p01&quot;&gt;		&lt;name&gt;张三&lt;&#x2F;name&gt;">
-<meta property="article:published_time" content="2020-04-04T08:54:45.000Z">
-<meta property="article:modified_time" content="2020-04-05T07:50:13.005Z">
+<meta property="og:description" content="集合篇一之基础篇    Collection是List和Set和Queue队列的顶级接口 List12345678910111213141516171819202122231.特性	有下标，有序	数据可以重复2.实现类	ArrayList：底层结构是object数组，初始长度是10，查询快，增删改慢。线程不安全，效率高；扩容原容量的 0.5倍+1	Vector：底层结构是object数组，初始长度">
+<meta property="og:image" content="http://yoursite.com/images/jihe.gif">
+<meta property="article:published_time" content="2020-04-05T07:04:29.000Z">
+<meta property="article:modified_time" content="2020-04-05T12:24:18.471Z">
 <meta property="article:author" content="浩哥">
 <meta property="article:tag" content="分享">
-<meta property="article:tag" content="解析">
+<meta property="article:tag" content="集合">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/jihe.gif">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/04/wang/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/05/one/"/>
 
 
 
 
 
-  <title>解析xml，properties文件 | WH</title>
+  <title>集合之基础 | WH</title>
   
 
 
@@ -283,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/wang/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/one/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="浩哥">
@@ -300,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">解析xml，properties文件</h1>
+          <h1 class="post-title" itemprop="name headline">集合之基础</h1>
         
 
         <div class="post-meta">
@@ -312,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-04T16:54:45+08:00">
-                2020-04-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T15:04:29+08:00">
+                2020-04-05
               </time>
             
 
@@ -372,8 +374,12 @@
       
 
       
-        <h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><h2 id="解析xml文件"><a href="#解析xml文件" class="headerlink" title="解析xml文件"></a>解析xml文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">xml文件内容：</span><br><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;students&gt;</span><br><span class="line">	&lt;student pid=<span class="string">"p01"</span>&gt;</span><br><span class="line">		&lt;name&gt;张三&lt;/name&gt;</span><br><span class="line">	&lt;/student&gt;</span><br><span class="line">	&lt;student pid=<span class="string">"p02"</span>&gt;</span><br><span class="line">		&lt;name&gt;李四&lt;/name&gt;</span><br><span class="line">	&lt;/student&gt;	</span><br><span class="line">	&lt;student pid=<span class="string">"p03"</span>&gt;</span><br><span class="line">		&lt;name&gt;王五&lt;/name&gt;</span><br><span class="line">	&lt;/student&gt;		</span><br><span class="line">&lt;/students&gt;</span><br><span class="line">解析：</span><br><span class="line">//解析xml文件</span><br><span class="line">	方式1.</span><br><span class="line">		//找到文件</span><br><span class="line">		InputStream is = Demo.class.getResourceAsStream(<span class="string">"Student.xml"</span>);</span><br><span class="line">		SAXReader saxReader=new SAXReader();</span><br><span class="line">		try &#123;</span><br><span class="line">			//放入saxReader并接受</span><br><span class="line">			Document doc=saxReader.read(is);</span><br><span class="line">			//找到对应的元素集合</span><br><span class="line">			List&lt;Node&gt; selectNodes=doc.selectNodes(<span class="string">"/students/student"</span>);</span><br><span class="line">			<span class="keyword">for</span>(Node node:selectNodes) &#123;</span><br><span class="line">				Element elem=(Element)node;</span><br><span class="line">				//找到属性</span><br><span class="line">				String pid=elem.attributeValue(<span class="string">"pid"</span>);</span><br><span class="line">				System.out.println(<span class="string">"pid="</span>+pid);</span><br><span class="line">				</span><br><span class="line">				Element name=(Element)elem.selectSingleNode(<span class="string">"name"</span>);</span><br><span class="line">				String nametext=name.getText();</span><br><span class="line">				System.out.println(<span class="string">"name="</span>+nametext);</span><br><span class="line">			&#125;</span><br><span class="line">	方式2.</span><br><span class="line">		解析xml文件找到student标签pid=p03的name</span><br><span class="line">			Element sfs1=(Element)doc.selectSingleNode(<span class="string">"/students/student[@pid='p03']/name"</span>);</span><br><span class="line">			System.out.println(sfs1.getText());</span><br></pre></td></tr></table></figure>
-<h2 id="解析properties"><a href="#解析properties" class="headerlink" title="解析properties"></a>解析properties</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;找到properties文件</span><br><span class="line">InputStream is &#x3D; Demo.class.getResourceAsStream(&quot;config.properties&quot;);</span><br><span class="line">		Properties pro &#x3D; new Properties();</span><br><span class="line">		try &#123;</span><br><span class="line">			pro.load(is);</span><br><span class="line">			String name&#x3D;pro.getProperty(&quot;name&quot;);</span><br><span class="line">			String age&#x3D;pro.getProperty(&quot;age&quot;);</span><br><span class="line">			System.out.println(&quot;name&#x3D;&quot;+name+&quot;,age&#x3D;&quot;+age);</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			&#x2F;&#x2F; TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="集合篇一之基础篇"><a href="#集合篇一之基础篇" class="headerlink" title="集合篇一之基础篇"></a>集合篇一之基础篇</h2><p><img src="/images/jihe.gif" alt="Image text"><br>    Collection是List和Set和Queue队列的顶级接口</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1.特性</span><br><span class="line">	有下标，有序</span><br><span class="line">	数据可以重复</span><br><span class="line">2.实现类</span><br><span class="line">	ArrayList：底层结构是object数组，初始长度是10，查询快，增删改慢。线程不安全，效率高；扩容原容量的 0.5倍+1</span><br><span class="line">	Vector：底层结构是object数组，初始长度是10，线程安全，效率低。加载因子为1：当元素个数超过容量长度时，进行扩容，原容量的一倍</span><br><span class="line">	         Stack 是Vector类的实现类</span><br><span class="line">	LinkedList：底层结构是列表：Node&lt;E&gt;，线程不安全，效率高，查询慢，增删改快</span><br><span class="line">3.遍历</span><br><span class="line">	System.out.println(&quot;------for循环---------&quot;);</span><br><span class="line">	for(int i&#x3D;0;i&lt;lit.size();i++) &#123;</span><br><span class="line">		System.out.println(lit.get(i));</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(&quot;------foreach---------&quot;);</span><br><span class="line">	&#x2F;&#x2F;foreach</span><br><span class="line">	for (Object object : lit) &#123;</span><br><span class="line">		System.out.println(object);</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(&quot;------iterator---------&quot;);</span><br><span class="line">	Iterator ds&#x3D;lit.iterator();</span><br><span class="line">	while(ds.hasNext()) &#123;</span><br><span class="line">		System.out.println(ds.next());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.特性</span><br><span class="line">	无序，数据唯一，重复会被过滤</span><br><span class="line">2.实现类</span><br><span class="line">     HashSet：底层结构是HashMap，值存在key，线程不安全，效率高。加载因子为0.75：即当 元素个数 超过 容量长度的0.75倍 时，进行扩容</span><br><span class="line">                 原容量的 1 倍：如 HashSet的容量为16，一次扩容后是容量为32</span><br><span class="line">	 TreeSet：底层是二叉树，不能有null值，底层TreeMap</span><br><span class="line">	 LinkedHashSet：链表维护元素的插入次序</span><br></pre></td></tr></table></figure>
+<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1.特性</span><br><span class="line">	键值对，key键唯一，重复会覆盖</span><br><span class="line">2.实现类</span><br><span class="line">    HashMap：底层是数组加列表;Node&lt;K,V&gt;[]，key和value可以存null值，默认长度是16，加载因子为0.75：即当 元素个数 超过 容量长度的0.75倍 时，进行扩容</span><br><span class="line">                扩容原容量的 1 倍，且调用rehash()，线程不安全，效率高。</span><br><span class="line">				java1，7之前是头插法，之后尾插法，列表长度大于八时使用红黑树，校友八使用列表</span><br><span class="line">	&#x2F;&#x2F;遍历所以值</span><br><span class="line">	Map&lt;String, String&gt; fd2&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">	Collection&lt;String&gt; dsyt&#x3D;fd2.values();</span><br><span class="line">	for (String string : dsyt) &#123;</span><br><span class="line">		System.out.println(string);</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;遍历所以键</span><br><span class="line">	Set&lt;String&gt; zh&#x3D;fd2.keySet();</span><br><span class="line">	for (String string : zh) &#123;</span><br><span class="line">		System.out.println(string);</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;遍历所以键值对</span><br><span class="line">	Set&lt;Entry&lt;String, String&gt;&gt; fa&#x3D;fd2.entrySet();</span><br><span class="line">	或</span><br><span class="line">	List&lt;Map.Entry&lt;String, String&gt;&gt; cs&#x3D;new ArrayList&lt;&gt;(fd2.entrySet());</span><br><span class="line">	for (Entry&lt;String, String&gt; entry : cs) &#123;</span><br><span class="line">		String fl&#x3D;entry.getKey();</span><br><span class="line">		String fk&#x3D;entry.getValue();</span><br><span class="line">		System.out.println(fl+&quot;-&quot;+fk);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	HashTable：线程安全，key和value不可以存null值，底层结构数组加列表：Entry&lt;?,?&gt;[] </span><br><span class="line">	TreeMap：底层列表：Entry&lt;K,V&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="并发容器："><a href="#并发容器：" class="headerlink" title="并发容器："></a>并发容器：</h1><p> HashTable在方法上使用synchronized，而ConcurrentHashMap是锁一个Entry节点，消耗小所以好一点<br> ConcurrentHashMap是HashMap升级版，提供线程安全并且效率高<br> CopyOnWriteArrayList是ArrayList升级版，提供线程安全并且效率高<br>CopyOnWriteArraySet是HashSet升级版，提供线程安全并且效率高<br> 当并发读远多于修改的场景下需要使用List和Set时，可以考虑使用CopyOnWriteArrayList和CopyOnWriteArraySet；<br> 当需要并发使用&lt;Key, Value&gt;键值对存取数据时，可以使用ConcurrentHashMap；当要保证并发&lt;Key, Value&gt;键值对有序时可以使用ConcurrentSkipListMap。</p>
+
       
     </div>
     
@@ -392,7 +398,7 @@
           
             <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"># 分享</a>
           
-            <a href="/tags/%E8%A7%A3%E6%9E%90/" rel="tag"># 解析</a>
+            <a href="/tags/%E9%9B%86%E5%90%88/" rel="tag"># 集合</a>
           
         </div>
       
@@ -405,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/21/hello-world/" rel="next" title="浩哥">
-                <i class="fa fa-chevron-left"></i> 浩哥
+              <a href="/2020/04/04/wang/" rel="next" title="解析xml，properties文件">
+                <i class="fa fa-chevron-left"></i> 解析xml，properties文件
               </a>
             
           </div>
@@ -415,8 +421,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/05/one/" rel="prev" title="集合之基础">
-                集合之基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/05/sort/" rel="prev" title="集合之排序">
+                集合之排序 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -577,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">1.</span> <span class="nav-text">解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析xml文件"><span class="nav-number">1.1.</span> <span class="nav-text">解析xml文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析properties"><span class="nav-number">1.2.</span> <span class="nav-text">解析properties</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集合篇一之基础篇"><span class="nav-number">1.</span> <span class="nav-text">集合篇一之基础篇</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#List"><span class="nav-number"></span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set"><span class="nav-number"></span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map"><span class="nav-number"></span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发容器："><span class="nav-number"></span> <span class="nav-text">并发容器：</span></a></div>
             
 
           </div>
