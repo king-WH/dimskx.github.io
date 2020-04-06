@@ -278,6 +278,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩哥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/06/thread/" itemprop="url">线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T18:12:11+08:00">
+                2020-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="线程篇之基础篇"><a href="#线程篇之基础篇" class="headerlink" title="线程篇之基础篇"></a>线程篇之基础篇</h1><h2 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h2><pre><code class="bash">1.继承Thread重写run方法
+        MyThread thread = new MyThread();
+        thread.start();
+2.实现Runable接口重写run方法
+        Thread thread = new Thread(new MyRunable());
+        thread.start();
+3.实现Callable接口重写润方法
+        public class MyCallable implements Callable&lt;String&gt; {
+            public String call() throws Exception {
+                <span class="keyword">for</span> (int i=0; i&lt;10; i++){
+                System.out.println(<span class="string">"MyCallable正在执行："</span>+new Date().getTime());
+            }
+            <span class="built_in">return</span> <span class="string">"MyCallable执行完毕！"</span>;
+        }
+    }
+
+    启动
+     FutureTask task = new FutureTask(new MyCallable());
+        Thread thread = new Thread(task);
+        thread.start();
+4.使用线程池创建线程
+
+        //1.使用Executors创建线程池
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        //2.通过线程池执行线程
+        executorService.execute(new MyRunable());</code></pre>
+<h2 id="实现接口和继承的比较"><a href="#实现接口和继承的比较" class="headerlink" title="实现接口和继承的比较"></a>实现接口和继承的比较</h2><pre><code>接口更适合多个相同的程序代码的线程去共享同一个资源。
+接口可以避免java中的单继承的局限性。
+接口代码可以被多个线程共享，代码和线程独立。
+线程池只能放入实现Runable或Callable接口的线程，不能直接放入继承Thread的类</code></pre><h2 id="Runable与Callable比较"><a href="#Runable与Callable比较" class="headerlink" title="Runable与Callable比较"></a>Runable与Callable比较</h2><p>相同点：<br>两者都是接口；<br>两者都可用来编写多线程程序；<br>两者都需要调用Thread.start()启动线程；<br>不同点：<br>实现Callable接口的线程能返回执行结果；而实现Runnable接口的线程不能返回结果；<br>Callable接口的call()方法允许抛出异常；而Runnable接口的run()方法的不允许抛异常；<br>实现Callable接口的线程可以调用Future.cancel取消执行 ，而实现Runnable接口的线程不能</p>
+<h1 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h1><p>新建—–》就绪——》运行/阻塞—–》结束</p>
+<h1 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h1><p>1)同步代码块（synchronized）<br>2)同步方法（synchronized）<br>3)同步锁（ReenreantLock）<br>4)特殊域变量（volatile）<br>5)局部变量（ThreadLocal）<br>6)阻塞队列（LinkedBlockingQueue）<br>7)原子变量（Atomic*）</p>
+<h1 id="sleep和wait的区别"><a href="#sleep和wait的区别" class="headerlink" title="sleep和wait的区别"></a>sleep和wait的区别</h1><p><img src="/images/haha1.png" alt="Image text"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/reflect/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -371,10 +545,14 @@
       
         
           
-            <h2 id="java反射"><a href="#java反射" class="headerlink" title="java反射"></a>java反射</h2><p>1.什么是反射？<br>反射是一种机制,利用反射机制动态的实例化对象、读写属性、调用方法、构造函数。</p>
-<p>2.如何得到类对象<br>   一切反射相关的代码都从获得类对象开始<br>   3种获取方式：<br>     2.1 类名.class;<br>     2.2 对象名.getClass();<br>     2.3 Class.forName(全限定名/全路径名)</p>
-<p>3.根据类得到类名（全限定名/全路径名）<br>    1）cName.getName();            –&gt;获取全限定名<br>    2）cName.getSimpleName();         –&gt;获取类名<br>    3）cName.getPackage();             –&gt;获取包名</p>
-<p>4.根据类得到类的属性<br>    Field field=cla.getField(“属性名”);</p>
+            <h2 id="java反射"><a href="#java反射" class="headerlink" title="java反射"></a>java反射</h2><p>1.什么是反射？</p>
+<p>反射是一种机制,利用反射机制动态的实例化对象、读写属性、调用方法、构造函数。</p>
+<p>2.如何得到类对象</p>
+<p>   一切反射相关的代码都从获得类对象开始<br>   3种获取方式：<br>     2.1 类名.class;<br>     2.2 对象名.getClass();<br>     2.3 Class.forName(全限定名/全路径名)</p>
+<p>3.根据类得到类名（全限定名/全路径名）</p>
+<pre><code>1）cName.getName();            --&gt;获取全限定名
+2）cName.getSimpleName();         --&gt;获取类名
+3）cName.getPackage();             --&gt;获取包名</code></pre><p>4.根据类得到类的属性<br>    Field field=cla.getField(“属性名”);</p>
 <pre><code>field.getName();            --&gt;获取属性名            
 filed.getType();            --&gt;获取属性类型        
 field.getModifiers();            --&gt;获取属性访问修饰符    
@@ -1040,7 +1218,7 @@ cla.getDeclaredConstrutors();        --&gt;获取所有的构造方法(包括私
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1062,7 +1240,7 @@ cla.getDeclaredConstrutors();        --&gt;获取所有的构造方法(包括私
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
