@@ -179,7 +179,7 @@
         <li class="menu-item menu-item-home">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             首页
           </a>
@@ -264,6 +264,148 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/10/io-file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="浩哥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/10/io-file/" itemprop="url">IO流</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-10T16:42:52+08:00">
+                2020-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="java-IO流了解"><a href="#java-IO流了解" class="headerlink" title="java IO流了解"></a>java IO流了解</h1><h2 id="字符流和字节流"><a href="#字符流和字节流" class="headerlink" title="字符流和字节流"></a>字符流和字节流</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">流：</span><br><span class="line">	字符流：顶级接口Reader  Writer</span><br><span class="line">	   输入：FileReader</span><br><span class="line">	   输出：FileWriter</span><br><span class="line">	字节流：顶级接口 InputStream   OutputStream</span><br><span class="line">	   输入：FileInputStream</span><br><span class="line">	   输出：FileOutputStream</span><br><span class="line">	   用于读写基本数据类型</span><br><span class="line">				DataInputStream（new FileInputStream）</span><br><span class="line">				DataOutputStream</span><br><span class="line">包装过滤流：</span><br><span class="line">    字符包装流：</span><br><span class="line">	   第一层包装</span><br><span class="line">	   输入：BufferedReader</span><br><span class="line">	   输出：BufferedWriter</span><br><span class="line">	   第二层包装 </span><br><span class="line">	   输入：ObjectReader（new BufferedReader）</span><br><span class="line">	   输出：ObjectWriter</span><br><span class="line">	字节包装流：</span><br><span class="line">		第一层包装</span><br><span class="line">	   输入：BufferedInputStream</span><br><span class="line">	   输出：BufferedOutputStream</span><br><span class="line">	   第二层包装 用于序列化</span><br><span class="line">	   输入：ObjectInputStream（new BufferedInputStream）</span><br><span class="line">	   输出：ObjectOutputStream</span><br><span class="line">									//创建一个用户对象，存储到本地D盘中</span><br><span class="line">								User u = new User(1, <span class="string">"陈卓"</span>, <span class="string">"666"</span>);</span><br><span class="line">						//		//对象序列化：把对象存储到本地中</span><br><span class="line">								FileOutputStream fos = new FileOutputStream(<span class="string">"d:\\images\\cz.dat"</span>);</span><br><span class="line">						//		//包第一层过滤流</span><br><span class="line">								BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line">						//		//包第二层过滤流，对象序列化，可以写出 对象数据</span><br><span class="line">								ObjectOutputStream oos = new ObjectOutputStream(bos);</span><br><span class="line">						//		oos.writeObject(u);</span><br><span class="line">								oos.close();</span><br><span class="line">						//		System.out.println(<span class="string">"呵呵哒"</span>);</span><br><span class="line">为什么要包装过滤流：</span><br><span class="line">      1.增加缓冲区,允许java程序不止操作一个字符，提高程序效率</span><br><span class="line">字节流转字符流</span><br><span class="line">		输入：InputStreamReader</span><br><span class="line">		输出：OutputStreamWriter</span><br><span class="line">字节流与字符流的区别：</span><br><span class="line">		1.字节流操作的基本单元为字节；字符流操作的基本单元为Unicode码元（两个字节）。</span><br><span class="line">		2.字节流默认不使用缓冲区；字符流使用缓冲区。</span><br><span class="line">		</span><br><span class="line">		字节</span><br><span class="line">		int i = 0;</span><br><span class="line">//		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">//			//读取输入流中的 一个数据字节</span><br><span class="line">//			i= fis.read();</span><br><span class="line">//			//当读到最后是 返回一个-1</span><br><span class="line">//			<span class="keyword">if</span>(i==-1)&#123;</span><br><span class="line">//				<span class="built_in">break</span>;</span><br><span class="line">//			&#125;</span><br><span class="line">//			//输出读取到的数据</span><br><span class="line">//			System.out.print((char)i);</span><br><span class="line">//		&#125;</span><br><span class="line">		</span><br><span class="line">		字符</span><br><span class="line">		String dsa;</span><br><span class="line">		<span class="keyword">while</span>((count=fd.readLine())!=null)&#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用IO流从网是下载图片"><a href="#使用IO流从网是下载图片" class="headerlink" title="使用IO流从网是下载图片"></a>使用IO流从网是下载图片</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">URL url = new URL(<span class="string">"http://www.xiaohuar.com"</span>);</span><br><span class="line">		InputStream is = url.openStream();</span><br><span class="line">		InputStreamReader isr = new InputStreamReader(is);</span><br><span class="line">		BufferedReader br = new BufferedReader(isr);</span><br><span class="line"></span><br><span class="line">		StringBuffer sb = new StringBuffer();</span><br><span class="line"></span><br><span class="line">		String str = <span class="string">""</span>;</span><br><span class="line">		<span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">			str = br.readLine();</span><br><span class="line">			<span class="keyword">if</span> (str == null) &#123;</span><br><span class="line">				<span class="built_in">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			sb.append(str);</span><br><span class="line">			System.out.println(str);</span><br><span class="line">		&#125;</span><br><span class="line">		// System.out.println(sb);</span><br><span class="line"></span><br><span class="line">		// 定义正则表达式</span><br><span class="line">		Pattern p = Pattern.compile(<span class="string">"&lt;img\\ssrc=\"([^\"&gt;]+)\"\\s/&gt;"</span>);</span><br><span class="line">		// 在字符串中 按照正则表达式 准备 检索</span><br><span class="line">		Matcher m = p.matcher(sb);</span><br><span class="line">		<span class="keyword">while</span> (m.find()) &#123;// 开始匹配</span><br><span class="line">			String path = m.group(1);</span><br><span class="line">//			System.out.println(path);</span><br><span class="line">			download(<span class="string">"http://www.xiaohuar.com/d/file/"</span>+path);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		br.close();</span><br><span class="line">		System.out.println(<span class="string">"下载完成"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 下载图片</span><br><span class="line">	 * @param path</span><br><span class="line">	 */</span><br><span class="line">	public static void download(String path) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			URL url = new URL(path);</span><br><span class="line">			InputStream is = url.openStream();</span><br><span class="line">			BufferedInputStream bis = new BufferedInputStream(is);</span><br><span class="line"></span><br><span class="line">			// 截取文件夹</span><br><span class="line">			String fname = path.substring(path.lastIndexOf(<span class="string">"/"</span>) + 1);</span><br><span class="line"></span><br><span class="line">			FileOutputStream fos = new FileOutputStream(<span class="string">"d://cz//"</span> + fname);</span><br><span class="line">			BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line"></span><br><span class="line">			int i = -1;</span><br><span class="line">			<span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">				i = bis.read();</span><br><span class="line">				<span class="keyword">if</span> (i == -1) &#123;</span><br><span class="line">					<span class="built_in">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				bos.write(i);</span><br><span class="line">			&#125;</span><br><span class="line">			bos.close();</span><br><span class="line">			bis.close();</span><br><span class="line"></span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1218,7 +1360,7 @@ cla.getDeclaredConstrutors();        --&gt;获取所有的构造方法(包括私
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1240,7 +1382,7 @@ cla.getDeclaredConstrutors();        --&gt;获取所有的构造方法(包括私
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
